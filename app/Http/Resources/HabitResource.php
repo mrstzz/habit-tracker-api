@@ -17,6 +17,9 @@ class HabitResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'title' => $this->title,
+            'meta' => [
+                'links' => route('api.habits.show', $this->uuid),
+            ],
         ];
     }
 }
