@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateHabitRequest;
 use Illuminate\Http\Request;
 use App\Models\Habit;
 use App\Http\Resources\HabitResource;
+use App\Models\HabitLog;
 
 class HabitController extends Controller
 {
@@ -43,6 +44,14 @@ class HabitController extends Controller
 
         // return resource
         return HabitResource::make($habit);
+    }
+
+    public function destroy(Habit $habit)
+    {
+        HabitLog::whereHabitId($habit->id)->delete();
+        $habit->delete();
+
+        return response()->noContent();
     }
         
 }
