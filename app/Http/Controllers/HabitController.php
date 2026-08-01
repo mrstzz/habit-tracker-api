@@ -9,6 +9,15 @@ use App\Http\Resources\HabitResource;
 
 class HabitController extends Controller
 {
+
+    public function index()
+    {
+        // return resource collection
+        return HabitResource::collection(Habit::all());
+    }
+
+
+
     public function store(StoreHabitRequest $request)
     {
         $data = $request->validated();
@@ -17,4 +26,5 @@ class HabitController extends Controller
         // return resource
         return HabitResource::make($habit);
     }
+        
 }
