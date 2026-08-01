@@ -32,7 +32,6 @@ class HabitController extends Controller
 
 
         $habit = Habit::create(array_merge($data, ['user_id' =>1]));
-        // return resource
         return HabitResource::make($habit);
     }
 
@@ -41,8 +40,6 @@ class HabitController extends Controller
         $data = $request->validated();
 
         $habit->update($data);
-
-        // return resource
         return HabitResource::make($habit);
     }
 
