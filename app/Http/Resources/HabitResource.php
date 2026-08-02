@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
@@ -12,12 +14,15 @@ class HabitResource extends JsonResource
      *
      * @return array<string, mixed>
      */
+    #[\Override]
     public function toArray(Request $request): array
     {
         return [
-            'uuid' => $this->uuid,
+            'uuid'  => $this->uuid,
             'title' => $this->title,
-            'meta' => [
+            'user'  => UserResource::make($this->whenLoaded('user')),
+            'logs'  => HabitLogResource::collection($this->whenLoaded('logs')),
+            'meta'  => [
                 'links' => route('api.habits.show', $this->uuid),
             ],
         ];

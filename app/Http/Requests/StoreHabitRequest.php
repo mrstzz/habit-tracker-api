@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreHabitRequest extends FormRequest
 {
@@ -28,15 +30,14 @@ class StoreHabitRequest extends FormRequest
         ];
     }
 
-
     /**
      * Handle a passed validation attempt.
-     * 
+     *
      * @return void
      */
-
+    #[\Override]
     protected function passedValidation()
     {
-        $this->merge(['uuid' => Str::uuid()]); 
+        $this->merge(['uuid' => Str::uuid()]);
     }
 }
