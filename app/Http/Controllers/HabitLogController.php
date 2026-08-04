@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Resources\HabitResource;
-use App\Models\HabitLog;
 use App\Models\Habit;
+use App\Models\HabitLog;
 use Illuminate\Http\Request;
 
 class HabitLogController extends Controller
@@ -20,7 +22,7 @@ class HabitLogController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): void
     {
         //
     }
@@ -28,7 +30,7 @@ class HabitLogController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(HabitLog $habitLog)
+    public function show(HabitLog $habitLog): void
     {
         //
     }
@@ -36,7 +38,7 @@ class HabitLogController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, HabitLog $habitLog)
+    public function update(Request $request, HabitLog $habitLog): void
     {
         //
     }
@@ -44,7 +46,7 @@ class HabitLogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(HabitLog $habitLog)
+    public function destroy(HabitLog $habitLog): void
     {
         //
     }
