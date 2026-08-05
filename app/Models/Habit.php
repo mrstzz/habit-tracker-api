@@ -22,23 +22,8 @@ class Habit extends Model
         return $this->belongsTo(User::class);
     }
 
-      protected static function boot(): void
-    {
-        parent::boot();
-
-
-        static::creating(function (self $log){
-            $log->uuid = (string) Str::uuid();
-        });
-
-        static::updating(function (self $log){
-            if($log->isDirty('completed_at')) {
-                unset($log->uuid);
-            }
-        });
-    }
     public function logs(): HasMany
     {
-        return $this->hasMany(HabitLog::class);
+        return $this->hasMany(HabitLog::class)->chaperone('habit');
     }
 }

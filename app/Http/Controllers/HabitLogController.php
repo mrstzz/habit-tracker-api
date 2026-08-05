@@ -25,38 +25,33 @@ class HabitLogController extends Controller
      */
     public function store(StoreHabitLogRequest $request, Habit $habit)
     {
-        $log = $habit->logs()->updateOrCreate([
-            'uuid' => $request->string('uuid'),
-            'habit_id' => $habit->id,
-            'completed_at' => $request->date('completed_at')
-        ]);
+        $log = $habit->logs()->updateOrCreate(
+            [
+                'uuid' => $request->string('uuid'),
+            ],
+            [
+                'completed_at' => $request->date('completed_at'),
+            ]
+        );
 
 
         return HabitLogResource::make($log);
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show()
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update()
+    public function show(Habit $habit, HabitLog $log)
     {
-        //
+        return HabitLogResource::make($log);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroy(Habit $habit, HabitLog $log)
     {
-        //
+        $log->delete();
+
+        return response()->noContent();
     }
 }
