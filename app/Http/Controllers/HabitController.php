@@ -14,34 +14,32 @@ class HabitController extends Controller
 {
     public function index()
     {
-        // return resource collection
         return HabitResource::collection(
             Habit::query()
                 ->when(
-                    str(request()->string('with', ''))->contains('user'),
-                    fn ($query) => $query->with('user')
+                    str(request()->string('with', ''))->contains('user'), 
+                    fn ($query) => $query->with('user') 
                 )
                 ->when(
                     str(request()->string('with', ''))->contains('logs'),
                     fn ($query) => $query->with('logs')
                 )
-                ->simplePaginate()
+            ->paginate()
         );
     }
 
     public function show(Habit $habit)
     {
-        // return resource
-        return HabitResource::make($habit->loadMissing(['user', 'logs']));
+        return HabitResource::make($habit);
     }
 
     public function store(StoreHabitRequest $request)
     {
-        $data = $request->only('uuid', 'title');
+        $data = $request->only(['title', 'uuid']);
 
         $habit = Habit::create(array_merge($data, ['user_id' => 1]));
 
-        return HabitResource::make($habit->loadMissing(['user', 'logs']));
+        return HabitResource::make($habit);
     }
 
     public function update(UpdateHabitRequest $request, Habit $habit)
@@ -50,7 +48,7 @@ class HabitController extends Controller
 
         $habit->update($data);
 
-        return HabitResource::make($habit->loadMissing(['user', 'logs']));
+        return HabitResource::make($habit);
     }
 
     public function destroy(Habit $habit)
