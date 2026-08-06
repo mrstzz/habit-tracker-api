@@ -24,7 +24,7 @@ class HabitLogResource extends JsonResource
                 'self' => route('api.habits.logs.destroy', ['habit' => $this->habit->uuid, 'log' => $this->uuid]),
                 'logs' => route('api.habits.logs.index', ['habit' => $this->habit->uuid]),
             ],
-            'habit'       => route('api.habits.show', ['habit' => $this->habit->uuid]),
+            'habit' => route('api.habits.show', ['habit' => $this->habit->uuid]),
         ];
     }
 }

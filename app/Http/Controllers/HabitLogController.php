@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers;
 
-use App\Models\HabitLog;
-use App\Models\Habit;
-use Illuminate\Http\Request;
-use App\Http\Resources\HabitLogResource;
 use App\Http\Requests\StoreHabitLogRequest;
+use App\Http\Resources\HabitLogResource;
+use App\Models\Habit;
+use App\Models\HabitLog;
 
 class HabitLogController extends Controller
 {
@@ -15,9 +16,7 @@ class HabitLogController extends Controller
      */
     public function index(Habit $habit)
     {
-        
         return HabitLogResource::collection($habit->logs()->paginate());
-
     }
 
     /**
@@ -34,11 +33,8 @@ class HabitLogController extends Controller
             ]
         );
 
-
         return HabitLogResource::make($log);
-
     }
-
 
     public function show(Habit $habit, HabitLog $log)
     {

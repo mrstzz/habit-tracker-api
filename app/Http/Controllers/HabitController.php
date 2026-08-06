@@ -17,14 +17,14 @@ class HabitController extends Controller
         return HabitResource::collection(
             Habit::query()
                 ->when(
-                    str(request()->string('with', ''))->contains('user'), 
-                    fn ($query) => $query->with('user') 
+                    str(request()->string('with', ''))->contains('user'),
+                    fn ($query) => $query->with('user')
                 )
                 ->when(
                     str(request()->string('with', ''))->contains('logs'),
                     fn ($query) => $query->with('logs')
                 )
-            ->paginate()
+                ->paginate()
         );
     }
 

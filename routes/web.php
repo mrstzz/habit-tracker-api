@@ -13,7 +13,7 @@ Route::prefix('api')->name('api.')->group(function (): void {
 
     Route::apiResource('habits.logs', HabitLogController::class)
         ->scoped(['habit' => 'uuid', 'log' => 'uuid'])
-        ->only(['index', 'store', 'destroy','show']);
+        ->only(['index', 'store', 'destroy', 'show']);
 
     // Route::get('habits/{habit:uuid}/logs', [HabitLogController::class, 'index'])->name('habits.logs.index');
     // Route::post('habits/{habit:uuid}/logs', [HabitLogController::class, 'store'])->name('habits.logs.store');
